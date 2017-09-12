@@ -38,6 +38,10 @@ Thumbs.db
 *.json
 *.vscode
 *(1).*
+*.bak
+
+# Personal Files #
+##################
 Python/Strings_and_Lists/makibasic13.py
 Python/hangman_messy.py
 Python/hangman.py
@@ -47,3 +51,8 @@ Algorithms/Notes from 9:6:2017.txt
 Algorithms/wednesday-algorithms.js
 PythonOOP/day1_notes.py
 PythonOOP/day1_assignments.py
+Activate FlaskEnv
+FlaskandMySQL/class_demos/mysqlconnection.py
+FlaskandMySQL/class_demos/mysqlconnection.pyc
+FlaskandMySQL/class_demos/server.py
+MySQL/ERD/MVC-advanced-assignment.pdf
