@@ -1,0 +1,67 @@
+===== QUERY 1 =====
+Want: Get all customers inside city_id = 312, returning customer's first name, 
+last name, email, and address.
+===================
+
+SELECT *
+FROM customer;
+
+SELECT * 
+FROM city;
+
+SELECT *
+from customer_list;
+
+SELECT customer.first_name, customer.last_name, customer.email, customer.address_id, costumer_list.address, city.city_id, address.address
+FROM customer
+JOIN address
+ON customer.address_id = address.address_id
+WHERE address.city_id = 312;
+
+
+
+====== QUERY 2 =====
+Want: Get all comedy films, returning the film title, description, release year, rating, special features, and genre (category)
+====================
+SELECT *
+FROM film_category;
+
+SELECT * 
+FROM film;
+
+SELECT *
+FROM category;
+
+SELECT film_category.film_id, category.name, film.title, film.description, film.release_year, film.rating, film.special_features
+FROM film_category
+JOIN category
+ON film_category.category_id = category.category_id
+JOIN film
+ON film_category.film_id = film.film_id
+WHERE film_category.category_id = 5;
+
+
+===== QUERY 3 =====
+Want: Get all films joined by actor_id=5, returning the actor id, 
+actor name, film title, description, and release year.
+===================
+SELECT *
+FROM film_actor;
+
+SELECT * 
+FROM film;
+
+SELECT *
+FROM actor;
+
+SELECT actor.actor_id, actor.first_name, actor.last_name, film.film_id, film.title, film.description, film.release_year
+FROM film_actor
+JOIN actor
+ON film_actor.actor_id = actor.actor_id
+JOIN film
+ON film_actor.film_id = film.film_id
+WHERE film_actor.actor_id = 5;
+
+===== QUERY 4 =====
+Want: Get all the customers in store_id = 1 and inside the cities (1, 42, 312, 459)
+===================
