@@ -39,6 +39,7 @@ Thumbs.db
 *.vscode
 *(1).*
 *.bak
+*.mwb
 
 # Personal Files #
 ##################
@@ -56,3 +57,11 @@ FlaskandMySQL/class_demos/mysqlconnection.py
 FlaskandMySQL/class_demos/mysqlconnection.pyc
 FlaskandMySQL/class_demos/server.py
 MySQL/ERD/MVC-advanced-assignment.pdf
+MySQL/Queries/examples.txt
+MySQL/Queries/friendships.csv
+MySQL/ERD/blogs.mwb
+MySQL/Queries/friendship.mwb
+MySQL/Queries/MySQL_Functions.png
+MySQL/Queries/users.csv
+MySQL/ERD/blogs.mwb
+MySQL/Queries/workbench_setup.txt
