@@ -66,3 +66,6 @@ MySQL/Queries/users.csv
 MySQL/ERD/blogs.mwb
 *mysqlconnection.py*
 FlaskandMySQL/flask_mysql/*
+FlaskandMySQL/mydb
+FlaskandMySQL/mysqlconnection*
+FlaskandMySQL/friends*
