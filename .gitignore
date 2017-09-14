@@ -64,3 +64,5 @@ MySQL/Queries/friendship.mwb
 MySQL/Queries/MySQL_Functions.png
 MySQL/Queries/users.csv
 MySQL/ERD/blogs.mwb
+*mysqlconnection.py*
+FlaskandMySQL/flask_mysql/*
