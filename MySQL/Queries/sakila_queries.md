@@ -2,10 +2,10 @@
 # MySQL Practice Queries
 
 
-###===== QUERY 1 =====###
+### ===== QUERY 1 ===== ###  
 **Goal:**  Get all customers inside city_id = 312, returning customer's first name, 
-last name, email, and address.
-###===================###
+last name, email, and address.  
+  
 **SELECT** customer.first_name, customer.last_name, customer.email, customer.address_id, costumer_list.address, city.city_id, address.address  
 **FROM** customer  
 **JOIN** address  
@@ -13,9 +13,9 @@ last name, email, and address.
 **WHERE** address.city_id = 312;
 
 
-###====== QUERY 2 =====###
-**Goal:**  Get all comedy films, returning the film title, description, release year, rating, special features, and genre (category)
-###====================###
+### ====== QUERY 2 ===== ###  
+**Goal:**  Get all comedy films, returning the film title, description, release year, rating, special features, and genre (category)  
+  
 **SELECT** film_category.film_id, category.name, film.title, film.description, film.release_year, film.rating, film.special_features  
 **FROM** film_category  
 **JOIN** category  
@@ -25,10 +25,10 @@ last name, email, and address.
 **WHERE** film_category.category_id = 5;
 
 
-###===== QUERY 3 =====###
+### ===== QUERY 3 ===== ###
 **Goal:**  Get all films joined by actor_id=5, returning the actor id, 
-actor name, film title, description, and release year.
-###===================###
+actor name, film title, description, and release year.  
+  
 **SELECT** actor.actor_id, actor.first_name, actor.last_name, film.film_id, film.title, film.description, film.release_year  
 **FROM** film_actor  
 **JOIN** actor  
@@ -38,23 +38,22 @@ actor name, film title, description, and release year.
 **WHERE** film_actor.actor_id = 5;
 
 
-###===== QUERY 4 =====###
+### ===== QUERY 4 ===== ###
 Goal:  Get all the customers in store_id = 1 and inside the cities (1, 42, 312, 459),
-return customer first name, last name, email, and address.
-###===================###
+return customer first name, last name, email, and address.  
+  
 **SELECT** address.city_id, customer.first_name, customer.last_name, customer.email, address.address, customer.store_id
 **FROM** address
 **JOIN** customer ON address.address_id = customer.address_id
 **WHERE** customer.store_id = 1 AND (address.city_id = 1 OR address.city_id = 42 OR address.city_id = 312 OR address.city_id = 459);
 
 
-###===== QUERY 5 =====###
+### ===== QUERY 5 ===== ###  
 **Goal:**  What query would you run to get all the films with a "rating = G" and 
 "special feature = behind the scenes", joined by actor_id = 15? Your query should 
 return the film title, description, release year, rating, and special feature. 
-Hint: You may use LIKE function in getting the 'behind the scenes' part.
-###===================###
-
+Hint: You may use LIKE function in getting the 'behind the scenes' part.  
+  
 **SELECT** film.title, film.description, film.release_year, film.rating, film.special_features  
 **FROM** film  
 **JOIN** film_actor  
@@ -62,12 +61,11 @@ Hint: You may use LIKE function in getting the 'behind the scenes' part.
 **WHERE** film_actor.actor_id = 15 AND film.rating = "G" AND film.special_features LIKE "%Behind the Scenes";  
 
 
-###===== QUERY 6 ======###
+### ===== QUERY 6 ====== ###
 **Goal:**  What query would you run to get all the actors that joined in 
 the film_id = 369? Your query should return the film_id, title, actor_id, 
-and actor_name.
-###===================###
-
+and actor_name.  
+  
 **SELECT** film.film_id, film.title, film_actor.actor_id, actor.first_name, actor.last_name  
 **FROM** film_actor  
 **JOIN** film  
@@ -77,12 +75,11 @@ and actor_name.
 **WHERE** film_actor.film_id = 369;  
 
 
-###===== QUERY 7 ======###
+### ===== QUERY 7 ====== ###
 **Goal:** What query would you run to get all drama films with a rental rate of 
 2.99? Your query should return film title, description, release year, rating, 
-special features, and genre (category).
-###====================###
-
+special features, and genre (category).  
+  
 **SELECT** film.title, film.description, film.release_year, film.rating, film.special_features, category.name  
 **FROM** film_category  
 **JOIN** film  
@@ -92,13 +89,12 @@ special features, and genre (category).
 **WHERE** film.rental_rate = 2.99 AND category.name = 'drama'  
 
 
-###===== QUERY 8 =====###
+### ===== QUERY 8 ===== ###
 **Goal:** What query would you run to get all the action films which are joined 
 by SANDRA KILMER? Your query should return film title, description, 
 release year, rating, special features, genre (category), and actor's 
-first name and last name.
-###===================###
-
+first name and last name.  
+  
 **SELECT** film.title, film.description, category.name, film.release_year, film.rating, film.special_features, actor.first_name, actor.last_name  
 **FROM** film_actor  
 **JOIN** film  
