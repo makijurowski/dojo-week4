@@ -1,5 +1,6 @@
-# MySQL Queries
+# MySQL Practice Queries
 
+## Using LEFT JOIN
 SELECT *
 FROM friendships;
 
