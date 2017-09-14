@@ -69,3 +69,5 @@ FlaskandMySQL/flask_mysql/*
 FlaskandMySQL/mydb
 FlaskandMySQL/mysqlconnection*
 FlaskandMySQL/friends*
+MySQL/Queries/friendships.txt
+MySQL/Queries/workbench_setup.txt
