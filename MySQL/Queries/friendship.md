@@ -1,3 +1,5 @@
+# MySQL Queries
+
 SELECT *
 FROM friendships;
 
