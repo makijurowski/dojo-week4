@@ -64,10 +64,9 @@ MySQL/Queries/friendship.mwb
 MySQL/Queries/MySQL_Functions.png
 MySQL/Queries/users.csv
 MySQL/ERD/blogs.mwb
-*mysqlconnection.py*
+mysqlconnection.pyc
 FlaskandMySQL/flask_mysql/*
 FlaskandMySQL/mydb
 FlaskandMySQL/mysqlconnection*
-FlaskandMySQL/friends*
 MySQL/Queries/friendships.txt
 MySQL/Queries/workbench_setup.txt
