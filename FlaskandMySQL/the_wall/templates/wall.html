@@ -3,7 +3,6 @@
         <meta charset="utf-8">
         <title>The Wall</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-        <link rel="stylesheet" type="text/css" href="/Users/mroggers/Google%20Drive/Dojo/Week4/FlaskandMySQL/the_wall/static/styles.css">
     </head>
     <body>
 
@@ -16,9 +15,9 @@
                     <h4 id="greeting">{{ greeting }}</h4>
 
                     {% if session['logged_in'] == True %}
-                    <span id="logout"><a href="/logout">Log out</a></span>
+                    <span id="logout"><a href="/user/logout">Log out</a></span>
                     {% else %}
-                    <span id="logout"><a href="/login">Login</a> or <a href="/registration">Register</a></span>
+                    <span id="logout"><a href="/user/login">Login</a> or <a href="/user/create">Register</a></span>
                     {% endif %}
 
                 </div>
@@ -28,7 +27,7 @@
         <main>
             <div id="wrapper">
                 <div class="message">
-                    <form class="message-form" action="/message" method="POST">
+                    <form class="message-form" action="/message/create" method="POST">
                         <label for="message"><h2>Post a new message</h2></label>
                         <textarea class="text-box" id="message-box" name="message" value="{{ message }}"></textarea>
                         <input type="hidden" name="user_id" value="1">
@@ -36,27 +35,19 @@
                     </form>
                 </div>
                 <div class="messages">
-
                     {% for message in all_messages %}
                     <div class="new-message">
                         <h4 class="username">[{{ message['first_name'] }} {{ message['last_name'] }}, ID: {{ message['user_id'] }}]</h4> <span class="datestamp"> posted at {{ message['created_at'] }}</span>
                         <p class="message-content">
                             {{ message['message'] }}
+                            {% for comment in all_comments %}
+                                {% if comment.message_id == message.id %}
+                                    {{comment['comment']}}
+                                {% endif %}
+                            {% endfor %}
                         </p>
                     </div>
                     {% endfor %}
-
-                    <div class="new-message">
-                        <h4 class="username">Michael Choi</h4> <span class="datestamp">- January 23, 2013</span>
-                        <p class="message-content">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                            text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
-                            make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-                            typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release
-                            of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-                            software like Aldus PageMaker including versions of Lorem Ipsum.
-                        </p>
-                    </div>
                 </div>
             </div>
         </main>

@@ -1,10 +1,11 @@
 """ This is a Coding Dojo homework assignment. """
 
 from flask import Flask, request, redirect, render_template, session, flash
-from mysqlconnection import MySQLConnector
-import sys
-import re
 import md5
+from mysqlconnection import MySQLConnector
+import re
+import sys
+
 
 NAME_REGEX = re.compile(r"^[a-zA-Z\\s]+$")
 EMAIL_REGEX = re.compile(r"^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$")
@@ -20,10 +21,13 @@ app.secret_key = 'SECREEEETS'
 @app.route('/')
 def index():
     messages = mysql.query_db("SELECT * FROM users_messages ORDER BY created_at DESC")
+    comments = mysql.query_db(
+        "SELECT comments.message_id, comments.comment, comments.created_at, users.first_name, users.last_name FROM comments JOIN users ON comments.user_id = users.id ORDER BY comments.created_at ASC")
+    print comments
     if session.get('logged_in') is None:
-        session['first_name'] = 'First Name'
-        session['last_name'] = 'Last Name'
-        session['email'] = 'Email'
+        session['first_name'] = ''
+        session['last_name'] = ''
+        session['email'] = ''
         session['logged_in'] = False
         session['greeting'] = ''
     elif session['logged_in'] is True:
@@ -31,14 +35,12 @@ def index():
             str(session['first_name']) + ' ' + str(session['last_name']) + '!'
     else:
         session['greeting'] = ''
-    return render_template('wall.html', all_messages=messages, first_name=session['first_name'], last_name=session['last_name'], greeting=session['greeting'])
+    return render_template('wall.html', all_messages=messages, all_comments=comments, first_name=session['first_name'], last_name=session['last_name'], greeting=session['greeting'])
 
 
 # Add message using form
-@app.route('/message', methods=['POST'])
-def create():
-    print request.form['user_id']
-    print request.form['message']
+@app.route('/message/create', methods=['POST'])
+def create_message():
     query = "INSERT INTO messages (user_id, message, created_at, updated_at) VALUES(:user_id, :message, NOW(), NOW())"
     data = {
         'user_id': request.form['user_id'],
@@ -49,23 +51,51 @@ def create():
 
 
 # Registration form
-@app.route('/registration')
-def register():
+@app.route('/user/create')
+def create_user():
     # Things here
     return render_template('registration.html')
 
 
+@app.route('/user/login')
+def login_user():
+    session['logged_in'] = False
+    return render_template('login.html', logged_in=session['logged_in'])
+
+
+# User login
+@app.route('/user/login/process', methods=["POST"])
+def process_login():
+    session['email'] = request.form['email']
+    session['password'] = md5.new(request.form['password']).hexdigest()
+    query = "SELECT * FROM users WHERE email = :email"
+    data = {'email': request.form['email']}
+    newQuery = mysql.query_db(query, data)
+    if len(newQuery) == 0:
+        flash('That email is not in our system. Please try again or register a new account.')
+        return redirect('/user/login')
+    elif newQuery[0]['password'] == session['password']:
+        session['logged_in'] = True
+        session['first_name'] = newQuery[0]['first_name']
+        session['last_name'] = newQuery[0]['last_name']
+        return redirect('/')
+    else:
+        flash('Your password was incorrect. Please try again.')
+        return render_template('login.html', email=session['email'])
+
+
 # User log out link
-@app.route('/logout')
-def logout():
-    session.pop('logged_in', None)
-    session.pop('greeting', None)
+@app.route('/user/logout')
+def logout_user():
+    session.clear()
+    # session.pop('logged_in', None)
+    # session.pop('greeting', None)
     return redirect('/')
 
 
 # Process registration
-@app.route('/process', methods=['POST'])
-def process():
+@app.route('/user/create/process', methods=['POST'])
+def process_registration():
     session['logged_in'] = False
     session['email'] = request.form['email']
     session['first_name'] = request.form['first_name']
