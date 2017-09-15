@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>The Wall</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="/Users/mroggers/Google%20Drive/Dojo/Week4/FlaskandMySQL/the_wall/static/styles.css">
+</head>
+
+<body>
+
+    <header class="navigation">
+        <div class="no-margin left-col-50">
+            <h1 id="title">Coding Dojo: The Wall</h1>
+        </div>
+        <div class="no-margin right-col-50"></div>
+    </header>
+
+    <main>
+        <div id="wrapper">
+            <div class="registration">
+                <h1>Registration Form</h1>
+                <h3>
+                    {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+                    <p class="error-message">{{ message }}</p>
+                    {% endfor %} {% endif %} {% endwith %}
+                </h3>
+                <form action="/process" method="POST">
+                    <div class="form-entry">
+                        <label class="form-label" for="email">Email: </label>
+                        <input type="email" class="form-blank" name="email" value="{{ email }}"></input>
+                    </div>
+                    <div class="form-entry">
+                        <label class="form-label" for="first_name">First Name: </label>
+                        <input type="text" class="form-blank" name="first_name" value="{{ first_name }}"></input>
+                    </div>
+                    <div class="form-entry">
+                        <label class="form-label" for="last_name">Last Name: </label>
+                        <input type="text" class="form-blank" name="last_name" value="{{ last_name }}"></input>
+                    </div>
+                    <div class="form-entry">
+                        <label class="form-label" for="password">Password: </label>
+                        <input type="password" class="form-blank" name="password"></input>
+                    </div>
+                    <div class="form-entry">
+                        <label class="form-label" for="confirm_password">Confirm Password: </label>
+                        <input type="password" class="form-blank" name="confirm_password"></input>
+                    </div>
+                    <input class="button" type="submit" name="submit" value="Register"></input>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer">
+
+    </footer>
+
+</body>
+
+</html>

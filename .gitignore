@@ -69,3 +69,7 @@ FlaskandMySQL/flask_mysql/*
 FlaskandMySQL/mysqlconnection*
 MySQL/Queries/friendships.txt
 MySQL/Queries/workbench_setup.txt
+FlaskandMySQL/class_demos/*
+junk*
+*notes*
+*full_friends*
