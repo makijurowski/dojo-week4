@@ -6,6 +6,14 @@
 *.exe
 *.o
 *.so
+*.pyc
+*~
+__pycache__
+*DjangoEnv*
+*VirtualEnvs*
+db.sqlite3
+/static
+.DS_Store
 
 # Packages #
 ############
