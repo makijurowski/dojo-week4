@@ -8,12 +8,14 @@
 *.so
 *.pyc
 *~
+*.pyc*
 __pycache__
 *DjangoEnv*
 *VirtualEnvs*
 db.sqlite3
 /static
 .DS_Store
+*/main*
 
 # Packages #
 ############
