@@ -3,6 +3,8 @@
         <meta charset="utf-8">
         <title>The Wall</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+        <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
 
@@ -13,43 +15,57 @@
             <div class="no-margin right-col-50">
                 <div id="login">
                     <h4 id="greeting">{{ greeting }}</h4>
-
+                    <!-- User logout and login redirects -->
                     {% if session['logged_in'] == True %}
-                    <span id="logout"><a href="/user/logout">Log out</a></span>
+                        <span id="logout"><a href="/user/logout">Log out</a></span>
                     {% else %}
-                    <span id="logout"><a href="/user/login">Login</a> or <a href="/user/create">Register</a></span>
+                        <span id="logout"><a href="/user/login">Login</a> or <a href="/user/create">Register</a></span>
                     {% endif %}
-
                 </div>
             </div>
         </header>
 
         <main>
             <div id="wrapper">
+                <h3>
+                    {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+                    <p class="error-message">{{ message }}</p>
+                    {% endfor %} {% endif %} {% endwith %}
+                </h3>
                 <div class="message">
                     <form class="message-form" action="/message/create" method="POST">
                         <label for="message"><h2>Post a new message</h2></label>
                         <textarea class="text-box" id="message-box" name="message" value="{{ message }}"></textarea>
-                        <input type="hidden" name="user_id" value="1">
-                        <button type="submit" id="message-button" name="submit" class="button">Post a message</button>
+                        <input type="hidden" name="user_id" value="{{ session['user_id'] }}">
+                        <button type="submit" id="message-button" name="message-submit" class="button">Post a message</button>
                     </form>
                 </div>
                 <div class="messages">
                     {% for message in all_messages %}
-                    <div class="new-message">
-                        <h4 class="username">[{{ message['first_name'] }} {{ message['last_name'] }}, ID: {{ message['user_id'] }}]</h4> <span class="datestamp"> posted at {{ message['created_at'] }}</span>
-                        <p class="message-content">
-                            {{ message['message'] }}
-                            {% for comment in all_comments %}
-                                {% if comment.message_id == message.id %}
-                                    {{comment['comment']}}
-                                {% endif %}
-                            {% endfor %}
-                        </p>
+                    <div class="new-message" id="{{ message['id'] }}">
+                        <h4 class="username">[{{ message['first_name'] }} {{ message['last_name'] }}, ID: {{ message['user_id'] }}]</h4>
+                        <span class="datestamp"> posted at {{ message['created_at'] }}</span>
+                        <p class="message-content" id="{{ message['id'] }}">{{ message['message'] }}</p>
+                        <div class="childshow">Post a new comment
+                            <div class="comment-form">
+                                <form class="comment-form" action="/comment/create" method="POST">
+                                    <textarea class="comment-box" id="comment-box" name="comment" value="{{ comment }}"></textarea>
+                                    <input type="hidden" name="user_id" value="{{ session['user_id'] }}">
+                                    <input type="hidden" name="message_id" value="{{ message['id'] }}">
+                                    <button type="submit" name="comment-submit" class="button">Submit</button>
+                                </form>
+                            </div>
+                        </div> 
+                        {% for comment in all_comments %} 
+                            {% if comment.message_id == message.id %} 
+                                <h4 class="username">[{{ comment['first_name'] }} {{ comment['last_name'] }}, ID: {{ comment['user_id'] }}]</h4>
+                                <span class="datestamp"> posted at {{ comment['created_at'] }}</span>
+                                <p class="comment-content" id="{{ comment['id'] }}">{{comment['comment']}}</p>
+                            {% endif %} 
+                        {% endfor %}
                     </div>
                     {% endfor %}
                 </div>
-            </div>
         </main>
 
         <footer id="footer">
@@ -57,4 +73,7 @@
         </footer>
 
     </body>
+    <script>
+
+    </script>
 </html>

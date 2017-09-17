@@ -1,0 +1,35 @@
+<div class="messages">
+    {% for message in all_messages %}
+    <div class="new-message">
+        <h4 class="username">[{{ message['first_name'] }} {{ message['last_name'] }}, ID: {{ message['user_id'] }}]</h4> 
+        <span class="datestamp"> posted at {{ message['created_at'] }}</span>
+        <p class="message-content" id="{{ message['id'] }}">
+            {{ message['message'] }} </p>
+            <button class="button" id="comment-button">Post a new comment</button>
+            {% for comment in all_comments %} 
+                {% if comment.message_id == message.id %} 
+                    {{comment['comment']}}
+                {% endif %} 
+            {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+
+<div class="comment">
+    <form class="comment-form" action="/comment/create" method="POST">
+        <label for="comment"><h5>Enter your comment:</h5></label>
+        <textarea class="text-box" id="comment-box" name="comment" value="{{ comment }}"></textarea>
+        <input type="hidden" name="user_id" value="1">
+        <button type="submit" id="comment-button" name="submit" class="button">Submit comment</button>
+    </form>
+</div>
+
+
+    <div class="comment">
+        <button class="button" id="comment-button">Post a new comment</button>
+        <p id="new-comment">
+            
+            Click the button to the left to see an example of adding an element before and after this text using jQuery.
+        
+        </p>
+    </div>

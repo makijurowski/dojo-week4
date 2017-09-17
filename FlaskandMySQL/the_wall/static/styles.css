@@ -114,7 +114,7 @@ main {
     position: relative;
 }
 
-.text-box {
+.text-box, .comment-box {
     width: 90%;
     max-width: 50rem;
     height: 10rem;
@@ -122,6 +122,10 @@ main {
     border: 2px solid #6ABCDD;
     margin: 1rem 0.5rem;
     padding: 0.5rem;
+}
+
+.comment-box {
+    height: 4rem;
 }
 
 .button {
@@ -165,6 +169,14 @@ main {
 .button:active {
     position: relative;
     top: 1px;
+}
+
+#comment-button {
+    font-size: 0.75rem;
+    padding: 0.5rem;
+    width: 5rem;
+    margin-top: -0.75rem;
+    display: block;
 }
 
 .messages {
