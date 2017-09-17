@@ -8,16 +8,18 @@
             <h1><a href="">Maki's Django Girls Blog</a></h1>
         </div>
 
-        <div>
-            <p>published: 15.09.2017, 12:13</p>
-            <h2><a href="">My First Post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at egetmetus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justosit amet risus.</p>
-        </div>
+        {% for post in posts %}
+            <div>
+                <p>published: {{ post.published_date }}</p>
+                <h1><a href="">{{ post.title }}</a></h1>
+                <p>{{ post.text|linebreaksbr }}</p>    
+            </div>
+        {% endfor %}
 
         <div>
             <p>published 15.09.2017, 12:13</p>
-            <h2><a href="">My second post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at egetmetus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justosit ametrisus.</p>
+            <h2><a href="">My second and only static post</a></h2>
+            <p>Aenean eu leo quam. Pellentesque ornare lssem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at egetmetus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justosit ametrisus.</p>
         </div>
 
     </body> 
