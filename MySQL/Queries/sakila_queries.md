@@ -42,10 +42,10 @@ actor name, film title, description, and release year.
 Goal:  Get all the customers in store_id = 1 and inside the cities (1, 42, 312, 459),
 return customer first name, last name, email, and address.  
   
-**SELECT** address.city_id, customer.first_name, customer.last_name, customer.email, address.address, customer.store_id
-**FROM** address
-**JOIN** customer ON address.address_id = customer.address_id
-**WHERE** customer.store_id = 1 AND (address.city_id = 1 OR address.city_id = 42 OR address.city_id = 312 OR address.city_id = 459);
+**SELECT** address.city_id, customer.first_name, customer.last_name, customer.email, address.address, customer.store_id 
+**FROM** address 
+**JOIN** customer ON address.address_id = customer.address_id 
+**WHERE** customer.store_id = 1 AND (address.city_id = 1 OR address.city_id = 42 OR address.city_id = 312 OR address.city_id  = 459); 
 
 
 ### ===== QUERY 5 ===== ###  
