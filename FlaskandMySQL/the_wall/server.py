@@ -64,6 +64,7 @@ def create_message():
         mysql.query_db(query, data)
     return redirect('/')
 
+
 # Add comment using form
 @app.route('/comment/create', methods=['POST'])
 def create_comment():
