@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.contrib.auth import views as auth_views
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
@@ -17,6 +17,7 @@ def index(request):
 
 
 def signup(request):
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -28,7 +29,7 @@ def signup(request):
             return redirect('index')
     else:
         form = UserCreationForm()
-    return render(request, 'registration/signup.html', {'form': form})
+    return render(request, 'registration/signup.html', {'posts': posts, 'form': form})
 
 
 def post_list(request):

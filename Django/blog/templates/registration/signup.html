@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-sm-4"></div>
 <div class="col-sm-4">
     <h1>Registration</h1>
     <form method="POST" class="post-form form-horizontal">
@@ -15,5 +14,21 @@
         <button type="submit" class="save btn btn-default">Sign Up</button>
     </form>
 </div>
-<div class="col-sm-4"></div>
+<div class="col-sm-1"></div>
+<div class="col-sm-7">
+    {% for post in posts %}
+    <div class="comment-box">
+        <h4 class="title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></span>
+        </h4>
+        <p>{{ post.text|linebreaksbr }}</p>
+        <div class="title" id="comments-expand">
+            <span class="date">last update by <span class="label label-info">{{ post.author }}</span> on {{ post.published_date
+            }}</span>
+        </div>
+    </div>
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            Click to expand <span class="underline">2593 comments</span> for this post. <span class="caret"></span>
+        </a> 
+    {% endfor %}
+</div>
 {% endblock %}

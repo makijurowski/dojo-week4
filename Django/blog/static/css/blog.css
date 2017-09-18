@@ -1,9 +1,21 @@
 body {
     padding-top: 50px;
+    background: url("/static/images/backgrounds/pattern2.svg");
+    background-size: 280%;
+    background-repeat: no-repeat;
 }
 
 .starter-template {
     text-align: center;
+}
+
+.welcome-message-bg {
+    height: 100vh;
+    padding: 20px;
+    text-align: left;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+    padding: 20px;
 }
 
 h3,
@@ -69,6 +81,7 @@ h4 {
 
 .comment-box {
     margin-top: 30px !important;
+    background-color: #ffffff;
 }
 
 .comment-box {
@@ -157,7 +170,7 @@ h4 {
     font-weight: normal !important;
     position: relative !important;
     display: block !important;
-    text-align: center !important;
+    text-align: center;
 }
 
 .date > span {
@@ -168,3 +181,13 @@ h4 {
 .save-button {
     margin-right: 8px;
 }
+
+#welcome-message {
+    height: 100vh !important;
+    width: 100%;
+    padding-top: 2vh !important;
+    background-size:100% auto;
+    position: absolute;
+    vertical-align: middle;
+}
+
