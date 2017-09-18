@@ -6,15 +6,15 @@ from .models import Post
 
 class PostForm(forms.ModelForm):
     title = forms.CharField(max_length=254,
-                             required=True,
-                             help_text='', 
-                             label='Post title:',
-                             initial='Title your post...',)
-    text = forms.CharField(widget=forms.Textarea, 
+                            required=True,
+                            help_text='',
+                            label='Post title:',
+                            initial='Title your post...',)
+    text = forms.CharField(widget=forms.Textarea,
                            required=True, help_text='',
                            label='Post text:',
                            initial='Write anything you want here.')
-    
+
     class Meta:
         model = Post
         fields = ('title', 'text',)

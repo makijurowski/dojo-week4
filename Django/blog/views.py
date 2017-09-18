@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
@@ -13,11 +11,13 @@ from .models import Post
 # Create your views here.
 @login_required
 def index(request):
-    return render(request, 'blog/post_list.html', {'form': form, 'posts': posts})
+    return render(request, 'blog/post_list.html', {'form': form,
+                                                   'posts': posts})
 
 
 def signup(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    posts = Post.objects.filter(
+            published_date__lte=timezone.now()).order_by('published_date')
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -29,7 +29,8 @@ def signup(request):
             return redirect('index')
     else:
         form = UserCreationForm()
-    return render(request, 'registration/signup.html', {'posts': posts, 'form': form})
+    return render(request, 'registration/signup.html', {'posts': posts,
+                                                        'form': form})
 
 
 def post_list(request):
@@ -43,8 +44,10 @@ def post_list(request):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm()
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'blog/post_list.html', {'posts': posts, 'form': form})
+    posts = Post.objects.filter(
+            published_date__lte=timezone.now()).order_by('published_date')
+    return render(request, 'blog/post_list.html', {'posts': posts,
+                                                   'form': form})
 
 
 def post_detail(request, pk):
