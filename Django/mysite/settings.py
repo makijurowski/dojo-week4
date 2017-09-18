@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
     'blog',
 ]
 
@@ -122,3 +123,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 ALLOWED_HOSTS = ['127.0.0.1', 'mroggers.pythonanywhere.com', u'localhost']
+
+REGISTRATION_OPEN = True
+SIMPLE_BACKEND_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/index.html'
+LOGIN_REDIRECT_URL = '/index.html'

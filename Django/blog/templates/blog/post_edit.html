@@ -2,10 +2,12 @@
 
 {% block content %}
 
-    <h1>New Post</h1>
+    <h1>Edit Post</h1>
     <form method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+        <button type="submit" class="btn btn-success">
+            <span class="glyphicon glyphicon-ok"></span> Save
+        </button>
     </form>
 
 {% endblock %}

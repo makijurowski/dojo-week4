@@ -1,31 +1,15 @@
-.page-header {
-    background-color: #ff9400;
-    margin-top: 0;
-    padding: 20px 20px 20px 40px;
+body {
+    padding-top: 50px;
 }
 
-.page-header h1,
-.page-header h1 a,
-.page-header h1 a:visited,
-.page-header h1 a:active {
-    color: #ffffff;
-    font-size: 36pt;
-    text-decoration: none;
+.starter-template {
+    text-align: center;
 }
 
-.content {
-    margin-left: 40px;
-}
-
-h1,
-h2,
 h3,
 h4 {
-    font-family: 'Lobster', cursive;
-}
-
-.date {
-    color: #828282;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
 }
 
 .save {
@@ -35,6 +19,34 @@ h4 {
 .post-form textarea,
 .post-form input {
     width: 100%;
+}
+
+.new-post-box {
+    height: 35vh;
+    margin-bottom: 20px;
+}
+
+.new-post-box > h1 {
+    position: relative;
+    top: 20px;
+}
+
+.main-post-form {
+    text-align: right;
+    position: relative;
+}
+
+.index-form textarea,
+.index-form input {
+    width: 94%;
+    display: inline-block;
+    text-align: left;
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+}
+
+.index-form label {
+    display: none;
 }
 
 .top-menu,
@@ -53,4 +65,106 @@ h4 {
 .post h1 a,
 .post h1 a:visited {
     color: #000000;
+}
+
+.comment-box {
+    margin-top: 30px !important;
+}
+
+.comment-box {
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    text-align: justify;
+}
+
+.comment-box .title {
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+    padding: 7px 15px;
+    position: relative;
+    margin: -10px -15px 10px;
+    overflow: hidden;
+}
+
+.comment-box .title:before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-width: 1px 0 0 1px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    position: absolute;
+    top: 10px;
+    left: -6px;
+}
+
+.icons {
+    display: inline-block;
+    text-align: left;
+    margin: 0 20px 0 auto;
+    clear: both;
+    position: relative;
+    top: 3px;
+    z-index: 10;
+}
+
+.user_icon {
+    position: relative;
+    display: block;
+    top: 40px;
+}
+
+.pencil_icon {
+    position: relative;
+    display: block;
+    top: 68px;
+}
+
+.dropdown-toggle {
+    width: 100%;
+    font-size: 1.5rem;
+    display: block;
+    text-align: right;
+    margin-top: 8px; 
+}
+
+#comments-expand {
+    text-align: center;
+    display: block;
+    top: 21px;
+    position: relative;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+
+.underline {
+    text-decoration: underline;
+    text-decoration-color: #828282;
+}
+
+.nav-icon {
+    margin-right: 5px !important;
+}
+
+.date {
+    color: #828282 !important;
+    font-size: 80% !important;
+    text-transform: uppercase !important;
+    text-align: left !important;
+    font-weight: normal !important;
+    position: relative !important;
+    display: block !important;
+    text-align: center !important;
+}
+
+.date > span {
+    font-size: 90% !important;
+    margin: 0 4px !important;
+}
+
+.save-button {
+    margin-right: 8px;
 }

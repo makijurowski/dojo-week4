@@ -2,13 +2,36 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    {% for post in posts %}
-        <div class="post">
-            <div class="date">
-                <p>published: {{ post.published_date }}</p>
+    <div class="col-sm-5">
+        <div class="new-post-box">
+            <h1 class="display-4">Create a new post</h1>
+            <div class="icons">
+                <span class="user_icon glyphicon glyphicon-user"></span>
+                <span class="pencil_icon glyphicon glyphicon-pencil"></span>
             </div>
-            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-            <p>{{ post.text|linebreaksbr }}</p>
+            <div class="main-post-form">
+                <form method="POST" class="index-form">
+                    {% csrf_token %} {{ form.as_p }}
+                    <button type="submit" class="btn btn-success save-button">
+                        <span class="glyphicon glyphicon-ok"></span> Save
+                    </button>
+                    <a href="{% url 'index' %}" class="btn btn-default">Cancel</a>
+                </form>
+            </div>
         </div>
+    </div>
+    <div class="col-sm-7">
+    {% for post in posts %}
+        <div class="comment-box">
+            <h4 class="title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></span></h4>
+            <p>{{ post.text|linebreaksbr }}</p>
+            <div class="title" id="comments-expand">
+                <span class="date">posted by <span class="label label-info">{{ post.author }}</span> at {{ post.published_date }}</span>
+            </div>
+        </div>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            Click to expand <span class="underline">2593 comments</span> for this post. <span class="caret"></span>
+        </a>
     {% endfor %}
+    </div>
 {% endblock %}
